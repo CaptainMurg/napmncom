@@ -1,0 +1,81 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  /* min-height: 2000px; */
+}
+
+.colorbox{
+	background-color: #558055;
+	color: #E7E7E7;
+}
+
+.darkbox{
+	background-color: #335533;
+}
+
+.nopad{
+	padding:0px;
+}
+
+.jumbotron h1{
+	color: #F8F8F8;
+	font-family: 'Helvetica', sans-serif;
+}
+
+/* Button Settings */
+.btn-primary {
+    background: #669966;
+	border-color: #E7E7E7;
+    color: #ffffff;
+}
+ 
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+	background: #66AA66;
+	border-color: #E7E7E7;
+}
+ 
+.btn-primary:active, .btn-primary.active {
+    background: #66CC66;
+    box-shadow: none;
+}
+
+/* Everything below is currently default.  Here in case I want to change it before production. */
+/* navbar */
+.navbar-default {
+    background-color: #F8F8F8;
+    border-color: #E7E7E7;
+}
+/* title */
+.navbar-default .navbar-brand {
+    color: #777;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #5E5E5E;
+}
+/* link */
+.navbar-default .navbar-nav > li > a {
+    color: #777;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #333;
+}
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #555;
+    background-color: #E7E7E7;
+}
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #555;
+    background-color: #D5D5D5;
+}
+/* caret */
+.navbar-default .navbar-nav > .dropdown > a .caret {
+    border-top-color: #777;
+    border-bottom-color: #777;
+}
