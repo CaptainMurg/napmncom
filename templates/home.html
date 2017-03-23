@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Home{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'jqPlot/jquery.jqplot.css' %}" />
+{% endblock %}
+
+{% block header %}
+<div class="jumbotron colorbox">
+	<div class="container">
+	<div class="row">
+		<div class="col-md-6 text-center">
+			<img class="center-block" height=175 width=250 src="{% static 'images/logo.png' %}" style="vertical-align:center;">
+			<h3>North American Potato Market News</h3>
+		</div>
+		<div class="col-md-3">
+			{% include 'potatodata/fwa-table.html' %}
+		</div>
+		<div class="col-md-3">
+			{% include 'potatodata/gri-table.html' %}
+		</div>
+	</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block content%}
+
+    <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4", id="idfwa" style="height:300px;" >
+        </div>
+        <div class="col-md-4" id="id10lb" style="height:300px;" >
+        </div>
+        <div class="col-md-4" id="id70s" style="height:300px;" >
+        </div>
+      </div>
+
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="{% static 'js/excanvas.js' %}"></script><![endif]-->
+    <script language="javascript" type="text/javascript" src="{% static 'jqPlot/jquery.jqplot.min.js' %}"></script>
+    <script language="javascript" type="text/javascript" src="{% static 'jqPlot/plugins/jqplot.dateAxisRenderer.min.js' %}"></script>
+    <script language="javascript" type="text/javascript" src="{% static 'jqPlot/plugins/jqplot.enhancedLegendRenderer.min.js' %}"></script>
+    <script language="javascript" type="text/javascript" src="{% static 'jqPlot/plugins/jqplot.highlighter.min.js' %}"></script>
+{% endblock %}
+
+{% block scripts %}
+    {% include 'potatodata/graph-idfwa.html' %}
+    {% include 'potatodata/graph-id10lb.html' %}
+    {% include 'potatodata/graph-id70s.html' %}
+{% endblock %}

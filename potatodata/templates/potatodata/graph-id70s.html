@@ -1,0 +1,50 @@
+
+<script class="code" type="text/javascript">
+    $(document).ready(function(){
+        var lines = [
+                  {% autoescape off %}{{ id70s_this70s }},{{ id70s_last70s }}{% endautoescape %}
+            ];
+        var grigraph = $.jqplot('id70s', lines,
+        { title: 'Idaho 70 Count',
+         animate: true,
+         axes: {
+            xaxis:{
+                 renderer:$.jqplot.DateAxisRenderer,
+                 tickOptions:{
+                   formatString:'%b&nbsp;%#d'
+                 },
+                 tickInterval:'5 days'
+               },
+            yaxis:{
+               tickOptions:{
+                  formatString:'$%.2f'
+               }
+            }
+         },
+         seriesDefaults: {
+           lineWidth: 2,
+           markerOptions: {
+             size: 5,
+           }
+         },
+         series: [
+            {label: '&nbsp {{id70s_thisyear}} &nbsp'},
+            {label: '&nbsp {{id70s_lastyear}} &nbsp'},
+         ],
+         highlighter: {
+          show: true,
+          sizeAdjust: 7.5
+         },
+         legend:{
+           renderer: $.jqplot.EnhancedLegendRenderer,
+           placement: 'outside',
+           marginTop: '30px',
+           show: true,
+           rendererOptions: {
+             numberRows: 1
+           },
+           location: 's'
+         }
+        });
+    });
+</script>

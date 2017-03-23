@@ -1,0 +1,50 @@
+
+<script class="code" type="text/javascript">
+    $(document).ready(function(){
+        var lines = [
+                  {% autoescape off %}{{ idfwa_thisfwas }},{{ idfwa_lastfwas }}{% endautoescape %}
+            ];
+        var grigraph = $.jqplot('idfwa', lines,
+        { title: 'Idaho FWA',
+         animate: true,
+         axes: {
+            xaxis:{
+                 renderer:$.jqplot.DateAxisRenderer,
+                 tickOptions:{
+                   formatString:'%b&nbsp;%#d'
+                 },
+                 tickInterval:'5 days'
+               },
+            yaxis:{
+               tickOptions:{
+                  formatString:'$%.2f'
+               }
+            }
+         },
+         seriesDefaults: {
+           lineWidth: 2,
+           markerOptions: {
+             size: 5,
+           }
+         },
+         series: [
+            {label: '&nbsp {{idfwa_thisyear}} &nbsp'},
+            {label: '&nbsp {{idfwa_lastyear}} &nbsp'},
+         ],
+         highlighter: {
+          show: true,
+          sizeAdjust: 7.5
+         },
+         legend:{
+           renderer: $.jqplot.EnhancedLegendRenderer,
+           placement: 'outside',
+           marginTop: '30px',
+           show: true,
+           rendererOptions: {
+             numberRows: 1
+           },
+           location: 's'
+         }
+        });
+    });
+</script>

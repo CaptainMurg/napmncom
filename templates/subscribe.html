@@ -1,0 +1,31 @@
+{% extends 'info.html' %}
+
+{% load staticfiles%}
+
+{% block content %}
+<div class="row">&nbsp;</div>
+<div class="row text-center">
+<div class="col-md-3"></div><div class="col-md-2 colorbox"><h4>Email</h4></div><div class="col-md-2 colorbox"><h4>Fax</h4></div><div class="col-md-5"></div>
+</div>
+<div class="row text-right">
+<div class="col-md-3"></div><div class="col-md-1 colorbox">US</div><div class="col-md-1 colorbox">Canada</div><div class="col-md-1 colorbox">US</div><div class="col-md-1 colorbox">Canada</div><div class="col-md-5"></div>
+</div>
+{% for a,b,c,d,e in Rates %}
+<div class="row text-right">
+<div class="col-md-3">{{e}} Months</div><div class="col-md-1">${{ a|floatformat:2 }}</div><div class="col-md-1">${{ b|floatformat:2 }}</div><div class="col-md-1">${{ c|floatformat:2 }}</div><div class="col-md-1">${{ d|floatformat:2 }}</div><div class="col-md-5"></div>
+</div>
+{% endfor %}
+
+<div class="row">
+<div class="col-md-12">
+<br>
+<p>Idaho residents must add 6% Sales Tax to purchase price.</p>
+
+<p>Order by e-mail (we will invoice you): <a href=mailto:"napmn@napmn.com">napmn@napmn.com</a></p>
+
+<p>Or send check or money order to:  2690 N Rough Stone Way • Meridian, ID 83646</p>
+
+<p>Please include mailing address, telephone number, and any special delivery instructions.</p>
+</div>
+</div>
+{% endblock %}

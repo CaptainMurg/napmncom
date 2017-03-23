@@ -1,0 +1,50 @@
+
+<script class="code" type="text/javascript">
+    $(document).ready(function(){
+        var lines = [
+                  {% autoescape off %}{{ id10lb_this10lb }},{{ id10lb_last10lb }}{% endautoescape %}
+            ];
+        var grigraph = $.jqplot('id10lb', lines,
+        { title: 'Idaho 10lb Film',
+         animate: true,
+         axes: {
+            xaxis:{
+                 renderer:$.jqplot.DateAxisRenderer,
+                 tickOptions:{
+                   formatString:'%b&nbsp;%#d'
+                 },
+                 tickInterval:'5 days'
+               },
+            yaxis:{
+               tickOptions:{
+                  formatString:'$%.2f'
+               }
+            }
+         },
+         seriesDefaults: {
+           lineWidth: 2,
+           markerOptions: {
+             size: 5,
+           }
+         },
+         series: [
+            {label: '&nbsp {{id10lb_thisyear}} &nbsp'},
+            {label: '&nbsp {{id10lb_lastyear}} &nbsp'},
+         ],
+         highlighter: {
+          show: true,
+          sizeAdjust: 7.5
+         },
+         legend:{
+           renderer: $.jqplot.EnhancedLegendRenderer,
+           placement: 'outside',
+           marginTop: '30px',
+           show: true,
+           rendererOptions: {
+             numberRows: 1
+           },
+           location: 's'
+         }
+        });
+    });
+</script>
