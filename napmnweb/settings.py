@@ -14,12 +14,6 @@ from pathlib import Path
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
-
-TEMPLATE_DIRS = (
-    TEMPLATE_PATH,
-)
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -29,13 +23,27 @@ SECRET_KEY = '-!bhp5em1hk10%k&$kq$#3@u_mj*dqsn9=9v2&e6+t_p6-g-0t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
-
 ALLOWED_HOSTS = [
     'napmn.webfactional.com',
-    'napmn.com',
+    '.napmn.com'
 ]
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'debug': True,
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 # Application definition
 
@@ -49,6 +57,7 @@ INSTALLED_APPS = (
     #thirdpartyapps
     'crispy_forms',
     #myapps
+    'pages',
     'potatodata',
     'subscription',
 )

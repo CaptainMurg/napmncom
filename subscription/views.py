@@ -20,4 +20,4 @@ def subscribe(request):
 
     context_dict['Rates'] = zip(USDEmailRates, CADEmailRates, USDFaxRates, CADFaxRates, Months)
 
-    return render(request, 'subscribe.html', context_dict)
+    return render(request, 'subscription/subscribe.html', context_dict)

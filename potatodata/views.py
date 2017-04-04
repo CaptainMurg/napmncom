@@ -3,7 +3,7 @@ from django.shortcuts import render
 import datetime
 from dateutil.relativedelta import relativedelta
 
-from potatodata.models import FWA, GRI, ShippingPointPrice, PotatoLink
+from .models import FWA, GRI, ShippingPointPrice
 
 GRAPH_SUBV = "BURBANK"
 
@@ -14,85 +14,9 @@ class FWAGRI():
         self.week_diff = week_diff
         self.year_diff = year_diff
 
-# Views
-def home(request):
-    context_dict = {}
+# Context Builders
 
-    lastdate = FWA.objects.latest('date').date
-    context_dict.update(fwagri_chart(lastdate))
-
-    context_dict.update(idfwa_graph())
-    context_dict.update(id10lb_graph())
-    context_dict.update(id70s_graph())
-
-    return render(request, 'home.html', context_dict)
-
-def about(request):
-    startdate = datetime.datetime.strptime('05111992', "%d%m%Y").date()
-    today = datetime.date.today()
-
-    context_dict = {}
-    context_dict['title'] = 'About'
-    context_dict['years_produced'] = relativedelta(today, startdate).years
-
-    return render(request, 'about.html', context_dict)
-
-def contact(request):
-    context_dict = {}
-    context_dict['title'] = 'Contact'
-    context_dict['address'] = '2690 N Rough Stone Way'
-    context_dict['city'] = 'Meridian'
-    context_dict['state'] = 'ID'
-    context_dict['zip'] = 83646
-    context_dict['phone'] = '(208) 525-8397'
-    context_dict['fax'] = '(208) 525-8569'
-    context_dict['email'] = 'napmn@napmn.com'
-
-    return render(request, 'contact.html', context_dict)
-
-def foblinks(request):
-    links = PotatoLink.objects.filter(category__name='FOB')
-
-    context_dict = {}
-    context_dict['title'] = 'FOB Shipping Point Prices'
-    context_dict['links'] = links
-
-    return render(request, 'foblinks.html', context_dict)
-
-def terminallinks(request):
-    links = PotatoLink.objects.filter(category__name='Terminal')
-
-    context_dict = {}
-    context_dict['title'] = 'Terminal Market Prices'
-    context_dict['links'] = links
-
-    return render(request, 'terminallinks.html', context_dict)
-
-def supplylinks(request):
-    amslinks = PotatoLink.objects.filter(category__name='Supply/Use', subcategory__name='USDA AMS')
-    nasslinks = PotatoLink.objects.filter(category__name='Supply/Use', subcategory__name='USDA NASS')
-    canadalinks = PotatoLink.objects.filter(category__name='Supply/Use', subcategory__name='Canada')
-
-    context_dict = {}
-    context_dict['title'] = 'Supplies, Movement, Stocks, and Usage'
-    context_dict['amslinks'] = amslinks
-    context_dict['nasslinks'] = nasslinks
-    context_dict['canadalinks'] = canadalinks
-
-    return render(request, 'supplylinks.html', context_dict)
-
-def agronomylinks(request):
-    links = PotatoLink.objects.filter(category__name = 'Agronomy')
-
-    context_dict = {}
-    context_dict['title'] = 'Agronomy'
-    context_dict['links'] = links
-
-    return render(request, 'agronomylinks.html', context_dict)
-
-# Data Collection Functions:
-
-def fwagri_chart(thisdate):
+def fwagri_tables(thisdate):
     context_dict = {}
     
     fwacurrent = FWA.objects.filter(date = thisdate)
@@ -164,9 +88,9 @@ def fwagri_chart(thisdate):
                 
         gris.append(FWAGRI( region, current_price, week_diff, year_diff))
     
-    context_dict['fwagrichart_fwas'] = fwas
-    context_dict['fwagrichart_gris'] = gris
-    context_dict['fwagrichart_date'] = [thisdate, weekago, yearago]
+    context_dict['fwagritables_fwas'] = fwas
+    context_dict['fwagritables_gris'] = gris
+    context_dict['fwagritables_date'] = [thisdate, weekago, yearago]
 
     return context_dict
 
@@ -188,7 +112,7 @@ def idfwa_graph():
 
     return context_dict
 
-def id10lb_graph():
+def  id10lb_graph():
     context_dict = {}
     subv = GRAPH_SUBV
 

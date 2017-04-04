@@ -1,0 +1,43 @@
+<div class="col-md-3">
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center darkbox"><h4>Fresh Weighted Average</h4></div>
+	</div>
+	<div class="row darkbox">
+                <div class="col-xs-6 nopad"></div>
+		<div class="col-xs-2 nopad text-center">{{ fwagritables_date.0|date:"n/j" }}</div>
+                <div class="col-xs-2 nopad text-center">{{ fwagritables_date.1|date:"n/j" }}</div>
+                <div class="col-xs-2 nopad text-center">{{ fwagritables_date.2|date:"Y" }}</div>
+	</div>
+	{% for point in fwagritables_fwas %}
+	<div class="row">
+		<div class="col-xs-6 nopad">{{ point.napmn_region }}</div>
+		<div class="col-xs-2 nopad text-right">{{ point.current_price|floatformat:-2 }}</div>
+		<div class="col-xs-2 nopad text-right">{{ point.week_diff|floatformat:-2 }}</div>
+		<div class="col-xs-2 nopad text-right">{{ point.year_diff|floatformat:-2 }}</div>
+	</div>
+	{% endfor %}
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="container">
+        <div class="row">
+                <div class="col-md-12 text-center darkbox"><h4>Grower Return Index</h4></div>
+        </div>
+        <div class="row darkbox">
+                <div class="col-xs-6 nopad"></div>
+                <div class="col-xs-2 nopad text-center">{{ fwagritables_date.0|date:"n/j" }}</div>
+                <div class="col-xs-2 nopad text-center">{{ fwagritables_date.1|date:"n/j" }}</div>
+                <div class="col-xs-2 nopad text-center">{{ fwagritables_date.2|date:"Y" }}</div>
+        </div>
+        {% for point in fwagritables_gris %}
+        <div class="row">
+                <div class="col-xs-6 nopad">{{ point.napmn_region }}</div>
+                <div class="col-xs-2 nopad text-right">{{ point.current_price|floatformat:-2 }}</div>
+                <div class="col-xs-2 nopad text-right">{{ point.week_diff|floatformat:-2 }}</div>
+                <div class="col-xs-2 nopad text-right">{{ point.year_diff|floatformat:-2 }}</div>
+        </div>
+        {% endfor %}
+</div>
+</div>
