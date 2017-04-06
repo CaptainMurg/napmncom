@@ -16,32 +16,32 @@ class FWAGRI():
 
 # Context Builders
 
-def fwagri_tables(thisdate):
+def fwagri_tables(requesteddate):
     context_dict = {}
     
-    fwacurrent = FWA.objects.filter(date = thisdate)
-    gricurrent = GRI.objects.filter(date = thisdate)
+    fwacurrent = FWA.objects.filter(date = requesteddate)
+    gricurrent = GRI.objects.filter(date = requesteddate)
     
     fwaweek = []
     x = 0
     i = 1
     while not fwaweek and x < 3:
-        fwaweek = FWA.objects.filter(date = thisdate - relativedelta(days=(7 + x)))
+        fwaweek = FWA.objects.filter(date = requesteddate - relativedelta(days=(7 + x)))
         if not fwaweek:
             x += i
             i = -(i + i//abs(i))
-    weekago = thisdate - relativedelta(days=(7 + x))
+    weekago = requesteddate - relativedelta(days=(7 + x))
     griweek = GRI.objects.filter(date = weekago)
     
     fwayear = []
     x = 0
     i = 1
     while not fwayear and x < 3:
-        fwayear = FWA.objects.filter(date = thisdate - relativedelta(days=(364 + x)))
+        fwayear = FWA.objects.filter(date = requesteddate - relativedelta(days=(364 + x)))
         if not fwayear:
             x += i
             i = -(i + i//abs(i))
-    yearago = thisdate - relativedelta(days=(364 + x))
+    yearago = requesteddate - relativedelta(days=(364 + x))
     griyear = GRI.objects.filter(date = yearago)
     
     fwas = []
@@ -90,7 +90,7 @@ def fwagri_tables(thisdate):
     
     context_dict['fwagritables_fwas'] = fwas
     context_dict['fwagritables_gris'] = gris
-    context_dict['fwagritables_date'] = [thisdate, weekago, yearago]
+    context_dict['fwagritables_date'] = [requesteddate, weekago, yearago]
 
     return context_dict
 
