@@ -1,0 +1,5 @@
+# ignore settings.py, because this file is different per server.
+**/settings.py
+
+#ignore compiled python code
+*.pyc
