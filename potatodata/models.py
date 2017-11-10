@@ -112,6 +112,8 @@ class ShippingPointPrice(models.Model):
 class FreightDestination(models.Model):
     usda_name = models.CharField(unique=True, max_length=50)
 
+    def __str__(self):
+        return self.usda_name
 
 class TruckRate(models.Model):
     week_ending = models.DateField()
